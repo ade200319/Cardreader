@@ -19,7 +19,7 @@ printf("9. FAKE TEST SCAN CARD\n");
 
 int main_option;
 
-getinputint("%d", &main_option);
+scanf("%d", &main_option);
 if(main_option == 4){
 break;
 }
@@ -40,3 +40,9 @@ else if(main_option == 9){
 
    
 }
+
+
+
+
+
+

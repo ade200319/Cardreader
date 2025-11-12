@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "c:\\Users\\HP\\skola\\python\\cdemo1006",
+            "binaryPath": "c:\\Users\\HP\\skola\\python\\cdemo1006\\main.exe",
+            "binaryArgs": []
+        }
+    ]
+}
