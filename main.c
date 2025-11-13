@@ -1,7 +1,8 @@
 #include <stdio.h> 
 #include <stdbool.h>
 #include <windows.h> 
-#include <functions.h>
+#include "safeinput.h"
+#include "functions.h"
 
 //-------------------------------------------------------
 int option;          //val i add/remove access funktionen
@@ -19,23 +20,23 @@ printf("9. FAKE TEST SCAN CARD\n");
 
 int main_option;
 
-getinputint("%d", &main_option);
+GetInputInt("Choose option:", &main_option);
 if(main_option == 4){
-break;
+return 0;
 }
 else if(main_option == 1){
     remote_open();     //------------- remote open door funktion
 }
 
  else if(main_option == 2){
-    //lista alla kort funktion
+   listcards(); //lista alla kort funktion
     }
 else if(main_option == 3){
      card_menu();           //---------- meny för att skapa nya kort/ radera 
  
 }
 else if(main_option == 9){
-    // test scan funktion
+   test_scan(); // test scan funktion
 }
 
    

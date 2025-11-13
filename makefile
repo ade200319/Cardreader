@@ -1,6 +1,6 @@
 PROG = main.exe 
 SRC = main.c 
-CFLAGS=-Wall -Werror -g
+CFLAGS=-Wall -Werror -g -I.
 LIBS = 
 all: $(PROG)
 $(PROG): $(SRC)
