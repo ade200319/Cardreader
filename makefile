@@ -1,10 +1,13 @@
-PROG = main.exe 
-SRC = main.c 
-CFLAGS=-Wall -Werror -g -I.
-LIBS = 
+PROG = main.exe
+SRC = main.c functions.c  safeinput.c     # <-- lägg till alla .c-filer här
+CFLAGS = -Wall -Werror -g -I.
+LIBS =
 all: $(PROG)
+
 $(PROG): $(SRC)
-	$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(SRC)  $(LIBS) 
+	$(CC) -o $@ $(CFLAGS) $(SRC) $(LIBS)
+
 clean:
 	rm -f $(PROG)
+
 .PHONY: all clean
