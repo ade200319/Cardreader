@@ -11,6 +11,7 @@
 typedef struct {           
     int card_nr;
     char card_name[20];
+    char created_date[20];
 } card;
 
 //------------------------------------------------------

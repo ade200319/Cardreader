@@ -1,27 +1,38 @@
 #include "functions.h"
 #include <stdlib.h> // för realloc, free
+#include <time.h>
 
 //------------------------------------------------------
 card *cards = NULL;
 int count = 0;
 //------------------------------------------------------
 
-// Skapa nytt kort
+// Skapa nytt kort--------------------------------------------------------------------
 bool creatnewcard(card *newcard) {
     printf("Enter new card number / 0 to exit:\n");
     GetInputInt("%d", &newcard->card_nr);
     if (newcard->card_nr == 0) return false;
 
-    GetInputChar("Enter card registration name:\n", newcard->card_name);
+    GetInput("Enter card registration name:\n", newcard->card_name, sizeof(newcard->card_name));
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    strftime(newcard->created_date, sizeof(newcard->created_date), "%Y-%m-%d", t); //för att få med datum kort skapades
+
 
     count++;
-    cards = realloc(cards, count * sizeof(card));
+    card* temp = realloc(cards, count * sizeof(card));
+if (temp == NULL) {
+    printf("Memory error!\n");
+    return false;
+}
+cards = temp;
+
     cards[count - 1] = *newcard;
 
     printf("Card added!\n");
     return true;
 }
-
+//------------------------------------------------------------------------------------
 // Ta bort kort
 bool removecard(void) {
     int id;
@@ -37,14 +48,20 @@ bool removecard(void) {
                 free(cards);
                 cards = NULL;
             } else {
-                cards = realloc(cards, count * sizeof(card));
+               card* temp = realloc(cards, count * sizeof(card));
+            if (temp == NULL) {
+              printf("Memory error!\n");
+              return false;
+            }
+            cards = temp;
+
             }
             printf("Card access removed\n");
             return true;
         }
     }
-    printf("Card not found\n");
-    return false;
+         printf("Card not found\n");
+         return false;
 }
 
 // Dörröppning
@@ -67,7 +84,9 @@ void listcards(void) {
 
     printf("Cards currently in system:\n");
     for (int i = 0; i < count; i++) {
-        printf("Card %d: Number = %d, Name = %s\n", i + 1, cards[i].card_nr, cards[i].card_name);
+        printf("Card %d: Number = %d, Name = %s, Date = %s\n",
+       i + 1, cards[i].card_nr, cards[i].card_name, cards[i].created_date);
+
     }
 }
 

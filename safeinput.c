@@ -7,7 +7,7 @@
 
 bool parseLong(const char *str, long *val)
 {
-    char *temp;
+    char *temp; 
     bool rc = true;
     errno = 0;
     *val = strtol(str, &temp, 0);
