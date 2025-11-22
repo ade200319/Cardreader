@@ -5,10 +5,10 @@
 #include "functions.h"
 
 //-------------------------------------------------------
-int option;          //val i add/remove access funktionen
-//---------------------------------------------------------
+// Endast lokala variabler – ingen global database!
+//-------------------------------------------------------
 
-int main_menu(){
+int main_menu(CardDB *db) {
     int main_option;
 
     while (true) {
@@ -24,19 +24,22 @@ int main_menu(){
         if (main_option == 4) {
             return 0;
         } else if (main_option == 1) {
-            remote_open();
+            remote_open(db);
         } else if (main_option == 2) {
-            listcards();
+            listcards(db);
         } else if (main_option == 3) {
-            card_menu();
+            card_menu(db);
         } else if (main_option == 9) {
-            test_scan();
+            test_scan(db);
         } else {
             printf("Invalid option.\n");
         }
     }
 }
+
 int main(void) {
-    main_menu();
+    CardDB db = { NULL, 0 };   // Initiera lokal databas
+    main_menu(&db);
+    free(db.cards);            // Städa minne innan program avslutas
     return 0;
 }

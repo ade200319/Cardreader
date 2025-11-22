@@ -14,18 +14,19 @@ typedef struct {
     char created_date[20];
 } card;
 
+typedef struct {
+    card *cards;
+    int count;
+} CardDB;
 //------------------------------------------------------
-// Globala variabler (endast deklaration, ej definition)
-extern card *cards;
-extern int count;
 
 //------------------------------------------------------
 // Funktionsdeklarationer
-bool creatnewcard(card *newcard);
-bool removecard(void);
-int remote_open(void);
-void listcards(void);
-int card_menu(void);
-bool test_scan(void);
+bool creatnewcard(CardDB *db, card *newcard);
+bool removecard(CardDB *db);
+int remote_open(CardDB *db);
+void listcards(CardDB *db);
+int card_menu(CardDB *db);
+bool test_scan(CardDB *db);
 
 #endif
